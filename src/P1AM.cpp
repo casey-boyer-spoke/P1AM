@@ -1232,6 +1232,14 @@ uint8_t P1AM::checkBurnout(channelLabel label){
 	return checkBurnout(label.slot,label.channel);
 }
 
+void P1AM::getModules(moduleProps properties [])
+{
+	for (uint8_t inx=0; inx<NUMBER_OF_MODULES; ++inx)
+	{
+		properties[inx] = mdb[baseSlot[inx].dbLoc];
+	}
+}
+
 /*******************************************************************************
 PRIVATE FUNCTIONS FOR P1AM.h
 *******************************************************************************/

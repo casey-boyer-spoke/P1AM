@@ -96,6 +96,8 @@ class P1AM{
 	uint8_t checkOverRange(channelLabel label);
 	uint8_t checkBurnout(channelLabel label);
 
+	void getModules(moduleProps properties []);
+
 	//Private functions for Base Controller communication.
 	private:
 	uint8_t spiSendRecvByte(uint8_t data);
