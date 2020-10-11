@@ -1523,4 +1523,10 @@ bool P1AM::Base_Controller_FW_UPDATE(unsigned int fwLen){
 		Serial.println("FW Update FAIL :c");
 		return 0;
 	}
+	else
+	{
+		Serial.println("Unknown Error");
+		Serial.println("FW Update FAIL :c");
+		return 0;
+	}
 }
