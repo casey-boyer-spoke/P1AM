@@ -46,12 +46,6 @@ uint8_t P1AM::init() {
 	uint32_t slots = 0;
 	int dbLoc = 0;
 	char *cfgArray;
-	uint8_t di_bytes = 0;   // Number of DI Bytes
-	uint8_t do_bytes = 0;   // Number of DO Bytes
-	uint8_t ai_bytes = 0;   // Number of AI Bytes
-	uint8_t ao_bytes = 0;   // Number of AO Bytes
-	uint8_t st_bytes = 0;   // Number of Status Bytes
-	uint8_t cfg_bytes;  	// Number of CFG Bytes
 	union moduleIDs{		// Use a union as a quick convert between byte arrays and ints
 		uint32_t *IDs;
 		uint8_t *byteArray;
@@ -106,21 +100,13 @@ uint8_t P1AM::init() {
 		baseSlot[i].dbLoc = dbLoc;		//MDB Location
 
 		//Grab MDB values and load them into variables for P1AM-100 and array to send to Base Controller
-		di_bytes  = baseControllerConstants[0+i*7]  = mdb[dbLoc].diBytes;
-		do_bytes  = baseControllerConstants[1+i*7]  = mdb[dbLoc].doBytes;
-		ai_bytes  = baseControllerConstants[2+i*7]  = mdb[dbLoc].aiBytes;
-		ao_bytes  = baseControllerConstants[3+i*7]  = mdb[dbLoc].aoBytes;
-		st_bytes  = baseControllerConstants[4+i*7]  = mdb[dbLoc].statusBytes;
-		cfg_bytes = baseControllerConstants[5+i*7]  = mdb[dbLoc].configBytes;
-					baseControllerConstants[6+i*7]  = mdb[dbLoc].dataSize;
-
-		//Zero out for next iteration of loop
-		di_bytes = 0;   // Number of DI Bytes
-		do_bytes = 0;   // Number of DO Bytes
-		ai_bytes = 0;   // Number of AI Bytes
-		ao_bytes = 0;   // Number of AO Bytes
-		st_bytes = 0;   // Number of Status Bytes
-
+		baseControllerConstants[0+i*7]  = mdb[dbLoc].diBytes;
+		baseControllerConstants[1+i*7]  = mdb[dbLoc].doBytes;
+		baseControllerConstants[2+i*7]  = mdb[dbLoc].aiBytes;
+		baseControllerConstants[3+i*7]  = mdb[dbLoc].aoBytes;
+		baseControllerConstants[4+i*7]  = mdb[dbLoc].statusBytes;
+		baseControllerConstants[5+i*7]  = mdb[dbLoc].configBytes;
+		baseControllerConstants[6+i*7]  = mdb[dbLoc].dataSize;
 	}
 
 	spiTimeout(1000*200);
