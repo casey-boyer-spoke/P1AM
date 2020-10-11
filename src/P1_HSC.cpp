@@ -198,7 +198,6 @@ Example Code:
 void P1_HSC_Channel::setPosition(int counts){
 	uint8_t  registerOffset = 0;
 	uint32_t bitPosition = 0;
-	uint32_t checkCommand = 0;
 	
 	if(channelNumber == 1){
 		registerOffset = 5;
