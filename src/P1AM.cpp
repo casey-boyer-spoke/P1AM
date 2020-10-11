@@ -1282,8 +1282,6 @@ void P1AM::dataSync(){
 }
 
 char *P1AM::loadConfigBuf(int moduleID){
-	char *defaultCfg;
-
 	switch(moduleID){
 		case 0x34605590:
 			return (char*)P1_04ADL_2_DEFAULT_CONFIG;
@@ -1321,7 +1319,8 @@ char *P1AM::loadConfigBuf(int moduleID){
 		case 0x34A5A481:
 			return (char*)P1_02HSC_DEFAULT_CONFIG;
 		default:
-		debugPrintln("wut");
+			debugPrintln("wut");
+			return (char*)P1_EMPTY_CONFIG;
 			break;
 	}
 }
