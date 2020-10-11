@@ -88,7 +88,7 @@ uint8_t P1AM::init() {
 	spiSendRecvBuf(modules.byteArray,slots*4,1);		//slots * 4 bytes per ID code
 
 	uint8_t *baseControllerConstants = (uint8_t *)malloc(1 * slots * 7);//seven elements in module sign on
-	for(int i=0;i<slots;i++){
+	for(uint32_t i=0;i<slots;i++){
 		dbLoc = 0;
 		while (modules.IDs[i] != mdb[dbLoc].moduleID){		//Scan MDB for matching ID and grab its array location
 			if(mdb[dbLoc].moduleID == 0xFFFFFFFF){
@@ -118,7 +118,7 @@ uint8_t P1AM::init() {
 	free(baseControllerConstants);
 
 	#ifndef AUTO_CONFIG_OFF
-	for (int i = 0; i < slots; i++){ 	//default config routine
+	for (uint32_t i = 0; i < slots; i++){ 	//default config routine
 		dbLoc = baseSlot[i].dbLoc;
 		if(mdb[dbLoc].configBytes > 0){				//Modules with config Bytes need to havea config loaded
 			cfgArray = loadConfigBuf(mdb[dbLoc].moduleID);	//Get pointer to default config for this module
