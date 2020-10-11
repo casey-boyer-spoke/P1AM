@@ -174,7 +174,6 @@ Returns: 	-uint16_t - Bitmapped representation of errors. A one in any position
 					    slot 1 and 3 would return 0x05.
 *******************************************************************************/
 uint16_t P1AM::rollCall(const char* moduleNames[], uint8_t numberOfModules){
-	uint8_t numberGoodPresent = 0;
 	uint16_t slotError = 0;
 	uint8_t dbLoc = 0;
 	bool singleError;
@@ -506,8 +505,6 @@ Parameters: -char buf[] - Pointer to an array that holds the values to write. Th
 Returns: 	-None
 *******************************************************************************/
 void P1AM::writeBlockData(char buf[], uint16_t len,uint16_t offset, uint8_t type){
-	uint8_t readParams[6];
-
 	if((len+offset) > 1200){		//max of data array is 1200, so we can't read past that
 		len = 1200-offset;		//adjust len in case we're trying to read too far
 	}
@@ -1145,7 +1142,6 @@ Returns: 	-uint8_t - Returns the slot number of the leftmost module in the base
 uint8_t P1AM::checkConnection(uint8_t numberOfModules){
 	uint8_t expectedSlots = 0;
 	uint16_t activeSlots = 0;
-	uint8_t badSlot = 0;
 	
 	if(!numberOfModules){
 		while(baseSlot[expectedSlots].dbLoc != 0){
